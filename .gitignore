@@ -1,0 +1,7 @@
+# Folders
+**/[b/B]uild/
+**/[B/b]in/
+**/[B/b]in-[O/o]bjs/
+**/[L/l]ibs/
+
+.idea/
