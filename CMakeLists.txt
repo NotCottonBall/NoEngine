@@ -67,6 +67,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   ${Vulkan_INCLUDE_DIRS}
 
   ${CMAKE_SOURCE_DIR}/Engine/Include
+  ${CMAKE_SOURCE_DIR}/Engine/Src
 )
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")

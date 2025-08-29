@@ -27,7 +27,8 @@ endforeach()
 
 # Exporting The Application
 file(GLOB_RECURSE NODITOR_SOURCES "./Src/*.cpp" "./Src/*.c")
-add_executable(${PROJECT_NAME} ${NODITOR_SOURCES})
+add_executable(${PROJECT_NAME} ${NODITOR_SOURCES}
+        Src/NoEditor.cpp)
 
 # Adding libraries
 find_library(IMGUI_LIB

@@ -1,0 +1,32 @@
+#pragma once
+
+#include "App/Window.h"
+
+// @TEMP: We need our own event class
+#include <SDL3/SDL_events.h>
+
+namespace NoEngine
+{
+class Engine
+{
+public:
+  Engine();
+  ~Engine();
+
+  void Run();
+
+private:
+  void Init();
+  void ProcessEvents();
+
+private:
+  static Engine* s_Engine;
+
+  // @TEMP: as said, we need our own event class
+  SDL_Event m_Event;
+
+  std::shared_ptr<Window> m_Window;
+
+  bool m_IsRunning;
+};
+} // namespace NoEngine
