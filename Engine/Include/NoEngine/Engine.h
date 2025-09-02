@@ -1,6 +1,7 @@
 #pragma once
 
-#include "App/Window.h"
+#include "Engine/Window.h"
+#include "Renderer/Vulkan/VulkanInstance.h"
 
 // @TEMP: We need our own event class
 #include <SDL3/SDL_events.h>
@@ -25,7 +26,8 @@ private:
   // @TEMP: as said, we need our own event class
   SDL_Event m_Event;
 
-  std::shared_ptr<Window> m_Window;
+  std::unique_ptr<Window> m_Window;
+  std::unique_ptr<NoRender::VulkanInstance> m_VulkanInstance;
 
   bool m_IsRunning;
 };

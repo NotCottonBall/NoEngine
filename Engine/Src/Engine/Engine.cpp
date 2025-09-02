@@ -1,6 +1,7 @@
 #include "Core/SDLContext.h"
 #include "Debug/NoAssert.h"
 #include "NoEngine/Engine.h"
+#include "Renderer/Vulkan/VulkanInstance.h"
 
 // @TODO: instead of this we need our own event class.
 #include <SDL3/SDL_events.h>
@@ -27,8 +28,8 @@ Engine::~Engine() {}
 void Engine::Init()
 {
   SDLContext::Init();
-  m_Window = Window::Create({std::string("NoEngine"), 800, 600});
-  // init vulkan
+  m_Window = Window::Create();
+  m_VulkanInstance = NoRender::VulkanInstance::Create();
 }
 
 void Engine::Run()
