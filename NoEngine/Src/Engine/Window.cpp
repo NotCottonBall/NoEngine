@@ -1,6 +1,7 @@
-#include "Debug/NoAssert.h"
 #include "Engine/Window.h"
+#include "Debug/NoAssert.h"
 
+#include "Debug/EngineLog.h"
 
 #include <SDL3/SDL_video.h>
 
@@ -10,9 +11,9 @@ WindowCreateInfo Window::m_WindowInfo = {std::string("NoEngine"), 800, 600};
 
 Window::Window(const WindowCreateInfo& windowInfo)
 {
-  std::println("Creating A Window...");
+  NoDebug::Log::EngineInfo("Creating A Window");
   Init();
-  std::println("Successfully Created A Window.");
+  NoDebug::Log::EngineInfo("Successfully Created A Window.");
 }
 Window::~Window() { SDL_DestroyWindow(m_Window); }
 

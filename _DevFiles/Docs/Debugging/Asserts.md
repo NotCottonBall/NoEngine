@@ -20,4 +20,4 @@ NO_ENGINE_ASSERT(m_Exists, "The Thing Doesn't Exist", QuitApp());
 Assuming `m_Exists` is a boolean, if its false, then the assertion gets called with the message and `QuitApp()` function gets called.\
 You can always give `void()` as the last param to do nothing.
 
-For each build type ASSERT functions differently. Check the code to know about it. (`PROJECT_ROOT/Engine/Src/Debug/NoAssert.h`)
+For each build type ASSERT functions differently. Check the code to know about it. (`PROJECT_ROOT/NoEngine/Src/Debug/NoAssert.h`)

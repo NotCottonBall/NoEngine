@@ -1,5 +1,5 @@
 # Graphics Setup
-All the API initialization code will be inside of the `Engine/Src/Renderer/<API_NAME>` folder.\
+All the API initialization code will be inside of the `PROJECT_ROOT/NoEngine/Src/Renderer/<API_NAME>` folder.\
 It will also have the API specific code for creating buffers, textures and all the other graphics stuff.
 
 # Vulkan Setup

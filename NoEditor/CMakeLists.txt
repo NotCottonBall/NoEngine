@@ -46,7 +46,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
 # adding include folders
 target_include_directories(${PROJECT_NAME} PUBLIC
-  ${CMAKE_SOURCE_DIR}/Engine/Include
+  ${CMAKE_SOURCE_DIR}/NoEngine/Include
   ${CMAKE_SOURCE_DIR}/Libraries/imgui
 
   ${PROJECT_SOURCE_DIR}/Include

@@ -1,6 +1,6 @@
+#include "NoEngine/Engine.h"
 #include "Core/SDLContext.h"
 #include "Debug/NoAssert.h"
-#include "NoEngine/Engine.h"
 #include "Renderer/Vulkan/VulkanInstance.h"
 
 // @TODO: instead of this we need our own event class.
@@ -14,7 +14,6 @@ Engine* Engine::s_Engine = nullptr;
 
 Engine::Engine() : m_Window(nullptr), m_IsRunning(true)
 {
-  // @TODO: this should be an ERROR and not an ASSERT
   NO_ENGINE_ASSERT(!s_Engine,
                    std::string("An Instance Of Engine Already Exists. Creating "
                                "Multiple Instances Of Engine Is Not Allowed"),

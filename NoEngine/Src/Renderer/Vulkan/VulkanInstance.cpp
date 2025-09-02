@@ -1,4 +1,5 @@
 #include "Renderer/Vulkan/VulkanInstance.h"
+#include "Debug/EngineLog.h"
 #include "Debug/NoAssert.h"
 #include "FixedGlobals.h"
 
@@ -12,12 +13,13 @@ namespace NoRender
 VulkanInstance::VulkanInstance()
     : m_ExtensionsCount(0), m_ExtensionProperties(0)
 {
-  std::println("Creating A Vulkan Instance...");
+  NoDebug::Log::EngineInfo("Creating A Vulkan Instance...");
   CreateApplication();
   CreateInstance();
   ValidateExtensions();
-  std::println("Successfully Initialized Vulkan.");
+  NoDebug::Log::EngineInfo("Successfully Initialized Vulkan.");
 }
+
 VulkanInstance::~VulkanInstance() { vkDestroyInstance(m_VkInstance, nullptr); }
 
 std::unique_ptr<VulkanInstance> VulkanInstance::Create()
@@ -37,6 +39,7 @@ void VulkanInstance::CreateApplication()
                                               NoFixedGlobal::Versions::EPatch);
   m_VkAppInfo.apiVersion = VK_API_VERSION_1_4;
 }
+
 void VulkanInstance::CreateInstance()
 {
   memset(&m_VkInstanceCreateInfo, 0, sizeof(m_VkInstanceCreateInfo));
@@ -46,10 +49,10 @@ void VulkanInstance::CreateInstance()
   // Getting Vulkan Extensions Needed By SDL
   uint32_t count = 0;
   char const* const* extNames = SDL_Vulkan_GetInstanceExtensions(&count);
-  std::println("Extensions Required By SDL: ");
+  NoDebug::Log::EngineDebug("Extensions Required By SDL: ");
   for(uint32_t i = 0; i < count; i++)
   {
-    std::println("\t{}", extNames[i]);
+    NoDebug::Log::EngineDebug("\t{}", extNames[i]);
   }
 
   m_VkInstanceCreateInfo.enabledExtensionCount = count;
@@ -70,15 +73,15 @@ void VulkanInstance::ValidateExtensions()
   vkEnumerateInstanceExtensionProperties(nullptr, &m_ExtensionsCount,
                                          m_ExtensionProperties.data());
 
-  std::println("Available Extensions: ");
+  NoDebug::Log::EngineDebug("Available Extensions: ");
   std::unordered_set<std::string> extensionsSupported;
   for(const auto& extension : m_ExtensionProperties)
   {
-    std::println("\t{}", std::string(extension.extensionName));
+    NoDebug::Log::EngineDebug("\t{}", std::string(extension.extensionName));
     extensionsSupported.insert(extension.extensionName);
   }
 
-  std::println("Checking Support For Extensions Needed By SDL");
+  NoDebug::Log::EngineInfo("Checking Support For Extensions Needed By SDL...");
   uint32_t sdlExtCount = 0;
   char const* const* extNamesForSDL =
       SDL_Vulkan_GetInstanceExtensions(&sdlExtCount);
@@ -86,12 +89,11 @@ void VulkanInstance::ValidateExtensions()
   {
     if(extensionsSupported.contains(extNamesForSDL[i]))
       continue;
-    /// @TODO: This should be an Error and not an Assert
     NO_ENGINE_ASSERT(false,
                      "Extensions Required By SDL Were Not Found In The "
                      "Supported Extensions List On Your Device",
                      void());
   }
-  std::println("Extensions Required By SDL Are Found");
+  NoDebug::Log::EngineInfo("Extensions Required By SDL Are Found.");
 }
 } // namespace NoRender

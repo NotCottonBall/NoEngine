@@ -7,7 +7,7 @@
   {                                                                            \
     if(!(expr))                                                                \
     {                                                                          \
-      std::println("ASSERTION CALLED: {}\n", msg);                             \
+      std::println("\033[31mASSERTION CALLED: {}\n\033[0m", msg);              \
       callback;                                                                \
       std::terminate();                                                        \
     }                                                                          \
@@ -17,7 +17,7 @@
   {                                                                            \
     if(!(expr))                                                                \
     {                                                                          \
-      std::println("ASSERTION CALLED: {}\n", msg);                             \
+      std::println("\033[31mASSERTION CALLED: {}\n\033[0m", msg);              \
       callback;                                                                \
       std::terminate();                                                        \
     }                                                                          \
@@ -27,7 +27,7 @@
   {                                                                            \
     if(!(expr))                                                                \
     {                                                                          \
-      std::println("ASSERTION CALLED AS WARNING: {}\n", msg);                  \
+      std::println("\033[31mASSERTION CALLED (AS WARNING): {}\n\033[0m", msg); \
       callback;                                                                \
     }                                                                          \
   }

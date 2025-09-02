@@ -7,4 +7,4 @@ The structure of this Include folder should be the same as the namespaces.
 
 Example:
 - The file **Engine.h** is in the namespace **NoEngine** so the Include structure should look like this:\
-`Include/NoEngine/Engine.h`
+`PROJECT_ROOT/NoEngine/Include/NoEngine/Engine.h`
