@@ -32,9 +32,9 @@ void VulkanInstance::CreateApplication()
   m_VkAppInfo.pApplicationName = "No Application";
   m_VkAppInfo.applicationVersion = VK_MAKE_VERSION(0, 0, 0);
   m_VkAppInfo.pEngineName = "NoEngine";
-  m_VkAppInfo.engineVersion =
-      VK_MAKE_VERSION(NoGlobal::Versions::EMajor, NoGlobal::Versions::EMinor,
-                      NoGlobal::Versions::EPatch);
+  m_VkAppInfo.engineVersion = VK_MAKE_VERSION(NoFixedGlobal::Versions::EMajor,
+                                              NoFixedGlobal::Versions::EMinor,
+                                              NoFixedGlobal::Versions::EPatch);
   m_VkAppInfo.apiVersion = VK_API_VERSION_1_4;
 }
 void VulkanInstance::CreateInstance()
@@ -47,7 +47,7 @@ void VulkanInstance::CreateInstance()
   uint32_t count = 0;
   char const* const* extNames = SDL_Vulkan_GetInstanceExtensions(&count);
   std::println("Extensions Required By SDL: ");
-  for(int i = 0; i < count; i++)
+  for(uint32_t i = 0; i < count; i++)
   {
     std::println("\t{}", extNames[i]);
   }
@@ -82,7 +82,7 @@ void VulkanInstance::ValidateExtensions()
   uint32_t sdlExtCount = 0;
   char const* const* extNamesForSDL =
       SDL_Vulkan_GetInstanceExtensions(&sdlExtCount);
-  for(int i = 0; i < sdlExtCount; i++)
+  for(uint32_t i = 0; i < sdlExtCount; i++)
   {
     if(extensionsSupported.contains(extNamesForSDL[i]))
       continue;

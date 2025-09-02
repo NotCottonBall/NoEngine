@@ -1,6 +1,7 @@
 Asserts are used to check if something is valid and throw a breakpoint with an error message if it isn't.
 
 # Types Of Asserts
+## NO_ENGINE_ASSERT (The Only One)
 For now there is only one assert used for the Engine called `NO_ENGINE_ASSERT`
 I don't really see a reason to include a client side asserts so we wont have them right now.
 
@@ -18,3 +19,5 @@ NO_ENGINE_ASSERT(m_Exists, "The Thing Doesn't Exist", QuitApp());
 ```
 Assuming `m_Exists` is a boolean, if its false, then the assertion gets called with the message and `QuitApp()` function gets called.\
 You can always give `void()` as the last param to do nothing.
+
+For each build type ASSERT functions differently. Check the code to know about it. (`PROJECT_ROOT/Engine/Src/Debug/NoAssert.h`)
