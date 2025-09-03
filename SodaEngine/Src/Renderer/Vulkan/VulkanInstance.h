@@ -5,7 +5,7 @@
 #include <memory>
 #include <vector>
 
-namespace NoRender
+namespace _SDRender
 {
 class VulkanInstance
 {
@@ -28,4 +28,4 @@ private:
   uint32_t m_ExtensionsCount;
   std::vector<VkExtensionProperties> m_ExtensionProperties;
 };
-} // namespace NoRender
+} // namespace _SDRender

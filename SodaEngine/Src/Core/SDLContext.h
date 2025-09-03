@@ -1,10 +1,10 @@
 #pragma once
 
-namespace NoEngine
+namespace SDEngine
 {
 class SDLContext
 {
 public:
   static void Init();
 };
-} // namespace NoEngine
+} // namespace SDEngine

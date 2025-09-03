@@ -6,7 +6,7 @@
 // @TEMP: We need our own event class
 #include <SDL3/SDL_events.h>
 
-namespace NoEngine
+namespace SDEngine
 {
 class Engine
 {
@@ -27,8 +27,8 @@ private:
   SDL_Event m_Event;
 
   std::unique_ptr<Window> m_Window;
-  std::unique_ptr<NoRender::VulkanInstance> m_VulkanInstance;
+  std::unique_ptr<_SDRender::VulkanInstance> m_VulkanInstance;
 
   bool m_IsRunning;
 };
-} // namespace NoEngine
+} // namespace SDEngine

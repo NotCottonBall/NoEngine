@@ -1,19 +1,19 @@
 #include "Engine/Window.h"
-#include "Debug/NoAssert.h"
+#include "Debug/SDAssert.h"
 
 #include "Debug/EngineLog.h"
 
 #include <SDL3/SDL_video.h>
 
-namespace NoEngine
+namespace SDEngine
 {
-WindowCreateInfo Window::m_WindowInfo = {std::string("NoEngine"), 800, 600};
+WindowCreateInfo Window::m_WindowInfo = {std::string("Soda Engine"), 800, 600};
 
 Window::Window(const WindowCreateInfo& windowInfo)
 {
-  NoDebug::Log::EngineInfo("Creating A Window");
+  SDDebug::Log::EngineInfo("Creating A Window");
   Init();
-  NoDebug::Log::EngineInfo("Successfully Created A Window.");
+  SDDebug::Log::EngineInfo("Successfully Created A Window.");
 }
 Window::~Window() { SDL_DestroyWindow(m_Window); }
 
@@ -26,7 +26,7 @@ void Window::Init()
 {
   m_Window = SDL_CreateWindow(m_WindowInfo.Title.c_str(), m_WindowInfo.Width,
                               m_WindowInfo.Height, SDL_WINDOW_VULKAN);
-  NO_ENGINE_ASSERT(m_Window,
+  SD_ENGINE_ASSERT(m_Window,
                    "Failed To Create An SDL Window Because: " +
                        std::string(SDL_GetError()),
                    SDL_DestroyWindow(m_Window));
@@ -36,4 +36,4 @@ const SDL_Window* Window::Get() const { return m_Window; }
 
 const WindowCreateInfo& Window::GetWindowInfo() const { return m_WindowInfo; }
 void Window::SetWindowInfo(WindowCreateInfo& info) { m_WindowInfo = info; }
-} // namespace NoEngine
+} // namespace SDEngine

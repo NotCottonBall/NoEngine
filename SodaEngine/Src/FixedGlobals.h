@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace NoFixedGlobal
+namespace SDFixedGlobal
 {
 namespace Versions
 {
@@ -13,4 +13,4 @@ constexpr uint32_t EMinor = 0;
 // Engine's Patch Version
 constexpr uint32_t EPatch = 0;
 } // namespace Versions
-} // namespace NoFixedGlobal
+} // namespace SDFixedGlobal

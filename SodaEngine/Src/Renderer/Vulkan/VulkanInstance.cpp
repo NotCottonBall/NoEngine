@@ -1,6 +1,6 @@
 #include "Renderer/Vulkan/VulkanInstance.h"
 #include "Debug/EngineLog.h"
-#include "Debug/NoAssert.h"
+#include "Debug/SDAssert.h"
 #include "FixedGlobals.h"
 
 #include <SDL3/SDL_vulkan.h>
@@ -8,16 +8,16 @@
 #include <print>
 #include <unordered_set>
 
-namespace NoRender
+namespace _SDRender
 {
 VulkanInstance::VulkanInstance()
     : m_ExtensionsCount(0), m_ExtensionProperties(0)
 {
-  NoDebug::Log::EngineInfo("Creating A Vulkan Instance...");
+  SDDebug::Log::EngineInfo("Creating A Vulkan Instance...");
   CreateApplication();
   CreateInstance();
   ValidateExtensions();
-  NoDebug::Log::EngineInfo("Successfully Initialized Vulkan.");
+  SDDebug::Log::EngineInfo("Successfully Initialized Vulkan.");
 }
 
 VulkanInstance::~VulkanInstance() { vkDestroyInstance(m_VkInstance, nullptr); }
@@ -33,10 +33,10 @@ void VulkanInstance::CreateApplication()
   m_VkAppInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
   m_VkAppInfo.pApplicationName = "No Application";
   m_VkAppInfo.applicationVersion = VK_MAKE_VERSION(0, 0, 0);
-  m_VkAppInfo.pEngineName = "NoEngine";
-  m_VkAppInfo.engineVersion = VK_MAKE_VERSION(NoFixedGlobal::Versions::EMajor,
-                                              NoFixedGlobal::Versions::EMinor,
-                                              NoFixedGlobal::Versions::EPatch);
+  m_VkAppInfo.pEngineName = "Soda Engine";
+  m_VkAppInfo.engineVersion = VK_MAKE_VERSION(SDFixedGlobal::Versions::EMajor,
+                                              SDFixedGlobal::Versions::EMinor,
+                                              SDFixedGlobal::Versions::EPatch);
   m_VkAppInfo.apiVersion = VK_API_VERSION_1_4;
 }
 
@@ -49,10 +49,10 @@ void VulkanInstance::CreateInstance()
   // Getting Vulkan Extensions Needed By SDL
   uint32_t count = 0;
   char const* const* extNames = SDL_Vulkan_GetInstanceExtensions(&count);
-  NoDebug::Log::EngineDebug("Extensions Required By SDL: ");
+  SDDebug::Log::EngineDebug("Extensions Required By SDL: ");
   for(uint32_t i = 0; i < count; i++)
   {
-    NoDebug::Log::EngineDebug("\t{}", extNames[i]);
+    SDDebug::Log::EngineDebug("\t{}", extNames[i]);
   }
 
   m_VkInstanceCreateInfo.enabledExtensionCount = count;
@@ -62,7 +62,7 @@ void VulkanInstance::CreateInstance()
   if(vkCreateInstance(&m_VkInstanceCreateInfo, nullptr, &m_VkInstance) !=
      VK_SUCCESS)
   {
-    NO_ENGINE_ASSERT(false, "Failed To Create Vulkan Instance.", void());
+    SD_ENGINE_ASSERT(false, "Failed To Create Vulkan Instance.", void());
   }
 }
 
@@ -73,15 +73,15 @@ void VulkanInstance::ValidateExtensions()
   vkEnumerateInstanceExtensionProperties(nullptr, &m_ExtensionsCount,
                                          m_ExtensionProperties.data());
 
-  NoDebug::Log::EngineDebug("Available Extensions: ");
+  SDDebug::Log::EngineDebug("Available Extensions: ");
   std::unordered_set<std::string> extensionsSupported;
   for(const auto& extension : m_ExtensionProperties)
   {
-    NoDebug::Log::EngineDebug("\t{}", std::string(extension.extensionName));
+    SDDebug::Log::EngineDebug("\t{}", std::string(extension.extensionName));
     extensionsSupported.insert(extension.extensionName);
   }
 
-  NoDebug::Log::EngineInfo("Checking Support For Extensions Needed By SDL...");
+  SDDebug::Log::EngineInfo("Checking Support For Extensions Needed By SDL...");
   uint32_t sdlExtCount = 0;
   char const* const* extNamesForSDL =
       SDL_Vulkan_GetInstanceExtensions(&sdlExtCount);
@@ -89,11 +89,11 @@ void VulkanInstance::ValidateExtensions()
   {
     if(extensionsSupported.contains(extNamesForSDL[i]))
       continue;
-    NO_ENGINE_ASSERT(false,
+    SD_ENGINE_ASSERT(false,
                      "Extensions Required By SDL Were Not Found In The "
                      "Supported Extensions List On Your Device",
                      void());
   }
-  NoDebug::Log::EngineInfo("Extensions Required By SDL Are Found.");
+  SDDebug::Log::EngineInfo("Extensions Required By SDL Are Found.");
 }
-} // namespace NoRender
+} // namespace _SDRender

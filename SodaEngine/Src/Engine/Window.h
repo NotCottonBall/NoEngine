@@ -5,7 +5,7 @@
 
 class SDL_Window;
 
-namespace NoEngine
+namespace SDEngine
 {
 typedef struct WindowCreateInfo
 {
@@ -34,4 +34,4 @@ private:
   SDL_Window* m_Window;
   static WindowCreateInfo m_WindowInfo;
 };
-} // namespace NoEngine
+} // namespace SDEngine

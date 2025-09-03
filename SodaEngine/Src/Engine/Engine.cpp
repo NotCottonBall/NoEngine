@@ -1,6 +1,6 @@
-#include "NoEngine/Engine.h"
+#include "SDEngine/Engine.h"
 #include "Core/SDLContext.h"
-#include "Debug/NoAssert.h"
+#include "Debug/SDAssert.h"
 #include "Renderer/Vulkan/VulkanInstance.h"
 
 // @TODO: instead of this we need our own event class.
@@ -8,13 +8,13 @@
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_video.h>
 
-namespace NoEngine
+namespace SDEngine
 {
 Engine* Engine::s_Engine = nullptr;
 
 Engine::Engine() : m_Window(nullptr), m_IsRunning(true)
 {
-  NO_ENGINE_ASSERT(!s_Engine,
+  SD_ENGINE_ASSERT(!s_Engine,
                    std::string("An Instance Of Engine Already Exists. Creating "
                                "Multiple Instances Of Engine Is Not Allowed"),
                    void(););
@@ -28,7 +28,7 @@ void Engine::Init()
 {
   SDLContext::Init();
   m_Window = Window::Create();
-  m_VulkanInstance = NoRender::VulkanInstance::Create();
+  m_VulkanInstance = _SDRender::VulkanInstance::Create();
 }
 
 void Engine::Run()
@@ -50,4 +50,4 @@ void Engine::ProcessEvents()
       m_IsRunning = false;
   }
 }
-}; // namespace NoEngine
+}; // namespace SDEngine

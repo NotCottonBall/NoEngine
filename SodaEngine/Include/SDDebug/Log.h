@@ -8,7 +8,7 @@ void __ClientDebugImpl(std::string_view msg);
 void __ClientWarnImpl(std::string_view msg);
 void __ClientErrorImpl(std::string_view msg);
 
-namespace NoDebug
+namespace SDDebug
 {
 namespace Log
 {
@@ -36,4 +36,4 @@ static void Error(std::format_string<Args...> fmt, Args&&... args)
   __ClientErrorImpl(std::format(fmt, std::forward<Args>(args)...));
 }
 } // namespace Log
-} // namespace NoDebug
+} // namespace SDDebug

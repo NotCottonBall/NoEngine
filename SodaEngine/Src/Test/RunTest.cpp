@@ -9,19 +9,19 @@
 #include <print>
 #include <string>
 
-namespace NoTest
+namespace SDTest
 {
 bool Test()
 {
-#ifdef NO_Debug
+#ifdef SD_Debug
   std::string windowTitlePrefix = "Debug";
-#elif NO_DebRelease
+#elif SD_DebRelease
   std::string windowTitlePrefix = "DebRelease";
-#elif NO_Release
+#elif SD_Release
   std::string windowTitlePrefix = "Release";
-#elif NO_RelExport
+#elif SD_RelExport
   std::string windowTitlePrefix = "RelExport";
-#elif NO_Export
+#elif SD_Export
   std::string windowTitlePrefix = "Export";
 #else
   std::string windowTitlePrefix = "Unknown";
@@ -48,9 +48,9 @@ bool Test()
   VkInstance vkInstance;
   VkApplicationInfo vkAppInfo = {};
   vkAppInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-  vkAppInfo.pApplicationName = "NoEngine Test";
+  vkAppInfo.pApplicationName = "Soda Engine Test";
   vkAppInfo.applicationVersion = VK_MAKE_VERSION(0, 0, 1);
-  vkAppInfo.pEngineName = "NoEngine";
+  vkAppInfo.pEngineName = "Soda Engine";
   vkAppInfo.engineVersion = VK_MAKE_VERSION(0, 0, 1);
   vkAppInfo.apiVersion = VK_API_VERSION_1_4;
 
@@ -115,4 +115,4 @@ bool Test()
 
   return true;
 }
-} // namespace NoTest
+} // namespace SDTest

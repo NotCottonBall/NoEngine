@@ -2,8 +2,8 @@
 
 #include <print>
 
-#ifdef NO_Debug
-#define NO_ENGINE_ASSERT(expr, msg, callback)                                  \
+#ifdef SD_Debug
+#define SD_ENGINE_ASSERT(expr, msg, callback)                                  \
   {                                                                            \
     if(!(expr))                                                                \
     {                                                                          \
@@ -12,8 +12,8 @@
       std::terminate();                                                        \
     }                                                                          \
   }
-#elif NO_DebRelease
-#define NO_ENGINE_ASSERT(expr, msg, callback)                                  \
+#elif SD_DebRelease
+#define SD_ENGINE_ASSERT(expr, msg, callback)                                  \
   {                                                                            \
     if(!(expr))                                                                \
     {                                                                          \
@@ -22,8 +22,8 @@
       std::terminate();                                                        \
     }                                                                          \
   }
-#elif NO_Release
-#define NO_ENGINE_ASSERT(expr, msg, callback)                                  \
+#elif SD_Release
+#define SD_ENGINE_ASSERT(expr, msg, callback)                                  \
   {                                                                            \
     if(!(expr))                                                                \
     {                                                                          \
@@ -32,5 +32,5 @@
     }                                                                          \
   }
 #else
-#define NO_ENGINE_ASSERT(expr, msg, callback)
+#define SD_ENGINE_ASSERT(expr, msg, callback)
 #endif

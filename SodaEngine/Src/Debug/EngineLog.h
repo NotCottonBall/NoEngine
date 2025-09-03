@@ -8,7 +8,7 @@ void __EngineDebugImpl(std::string_view msg);
 void __EngineWarnImpl(std::string_view msg);
 void __EngineErrorImpl(std::string_view msg);
 
-namespace NoDebug
+namespace SDDebug
 {
 namespace Log
 {
@@ -36,4 +36,4 @@ void EngineError(std::format_string<Args...> fmt, Args&&... args)
   __EngineErrorImpl(std::format(fmt, std::forward<Args>(args)...));
 }
 } // namespace Log
-} // namespace NoDebug
+} // namespace SDDebug
